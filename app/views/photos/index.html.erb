@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>All Photos</h1>
+      <%= link_to 'Add New', new_photo_path, class: 'btn btn-primary btn-block' %>
+      <% @photos.each do |photo| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="card-text"><%= photo.user.email %></h2>
+            <h4><%= time_ago_in_words(photo.created_at) %> ago</h4>
+          </div>
+          <div class="panel-body">
+            <%= image_tag photo.image.url(:thumb), class: 'img-thumbnail center-block' %>
+            <p class="text-center"><%= photo.caption %></p>
+
+            <%= link_to 'Show', photo_path(photo), class: 'btn btn-primary btn-block' %>
+            <% if photo.user == current_user %>
+              <%= link_to 'Edit', edit_photo_path(photo), class: 'btn btn-primary btn-block' %>
+              <%= link_to 'Delete', photo_path(photo),
+                  method: :delete,
+                  data: { confirm: "are you sure?" }, class: 'btn btn-danger btn-block' %>
+            <% end %>
+        </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+<div>
+</table>

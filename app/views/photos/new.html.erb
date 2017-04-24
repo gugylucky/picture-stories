@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= link_to 'Back', photos_path, class: 'btn btn-default' %>
+      <h2>Add New Photo</h2>
+      <%= form_for :photo, url: photos_path, html: {multipart: true, class: 'form-group'} do |f| %>
+        <p>
+          <%= f.label :image, class: 'control-label' %>
+          <%= f.file_field :image, class: 'form-control' %>
+        </p>
+        <p>
+          <%= f.label :caption, class: 'control-label' %>
+          <%= f.text_area :caption, class: 'form-control', placeholder: 'Add Caption...'  %>
+        </p>
+        <p>
+          <%= f.submit 'Save Photo', class: 'form-control btn-primary'  %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
